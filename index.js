@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const dbPassword = require("./constant.js");
+const { dbPassword } = require("./constant.js");
 
 //Express Body Parser
 app.use(express.json());
@@ -17,9 +17,11 @@ mongoose.connect(
 
 //Import routes
 const authRoute = require("./routes/auth.js");
+const postRoute = require("./routes/post.js");
 
 //Route Middleware
 app.use("/api/user", authRoute);
+app.use("/api/posts", postRoute);
 
 const PORT = process.env.PORT || 4000;
 
